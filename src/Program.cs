@@ -22,20 +22,10 @@ if (command == "init")
 }
 else if (command == "cat-file")
 {
-    var fileNameArgument = args[2];
-    var folder = fileNameArgument[2..];
-    var fileName = fileNameArgument[..2];
-    var path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-    Console.WriteLine($"Path is : {path}");
-    Console.WriteLine("1");
-    Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
-    Console.WriteLine("2");
-    Console.WriteLine(System.Environment.CurrentDirectory);
-    Console.WriteLine("3");
-    Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
-    Console.WriteLine("4");
-    Console.WriteLine(Environment.CurrentDirectory);
-    string readText = File.ReadAllText($".git/objects/{folder}/{fileName}");
+    var folder = args[2][2..];
+    var fileName = args[2][..2];
+    var path = Path.Combine(".git", "objects" ,folder, fileName);
+    string readText = File.ReadAllText(path);
     Console.WriteLine(readText);
 }
 else
