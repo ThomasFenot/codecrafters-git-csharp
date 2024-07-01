@@ -20,10 +20,15 @@ if (command == "init")
 }
 else if (command == "cat-file")
 {
-    var toto = args;
-    Console.WriteLine($"Arg 1 : {args[1]}");
-    Console.WriteLine($"Arg 2 : {args[2]}");
+    var fileNameArgument = args[2];
+    var folder = fileNameArgument[2..];
+    var fileName = fileNameArgument[..2];
 
+    Console.WriteLine($"fileNameArgument {fileNameArgument}");
+    Console.WriteLine($"folder {folder}");
+    Console.WriteLine($"fileName {fileName}");
+
+    string readText = File.ReadAllText($".git/objects/{folder}");
 
 }
 else
