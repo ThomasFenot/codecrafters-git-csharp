@@ -24,12 +24,8 @@ else if (command == "cat-file")
     var folder = fileNameArgument[2..];
     var fileName = fileNameArgument[..2];
 
-    Console.WriteLine($"fileNameArgument {fileNameArgument}");
-    Console.WriteLine($"folder {folder}");
-    Console.WriteLine($"fileName {fileName}");
-
-    string readText = File.ReadAllText($".git/objects/{folder}");
-
+    string readText = File.ReadAllText($".git/objects/{folder}/{fileName}");
+    Console.WriteLine(readText);
 }
 else
 {
