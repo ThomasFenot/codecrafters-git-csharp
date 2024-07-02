@@ -24,14 +24,19 @@ if (command == "init")
 }
 else if (command == "cat-file" && args[1] == "-p")
 {
-    string path = Path.Combine(".git", "objects" , args[2][2..], args[2][..2]);
+
+    Console.WriteLine($"Folder {args[2][2..]}");
+    Console.WriteLine($"File {args[2][..2]}");
+
+    string path = Path.Combine(".git", "objects" , args[2][2..], );
+    
     FileStream fileStream = new(path, FileMode.Open);
     ZLibStream zLibStream = new(fileStream, CompressionMode.Decompress);
-
-    StreamReader streamReader = new StreamReader(zLibStream);
+    StreamReader streamReader = new(zLibStream);
+    
     var content = streamReader.ReadToEnd();
 
-    Console.WriteLine(content);
+    Console.Write(content.Split('\x00')[1]);
 }
 else
 {
