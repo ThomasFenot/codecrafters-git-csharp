@@ -1,6 +1,8 @@
 using System;
 using System.IO;
+using System.IO.Compression;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -22,13 +24,16 @@ if (command == "init")
 }
 else if (command == "cat-file")
 {
-    var folder = args[2][2..];
-    var fileName = args[2][..2];
-    var path = Path.Combine(".git", "objects" ,folder, fileName);
-    string readText = File.ReadAllText(path);
-    Console.WriteLine(readText);
+    string path = Path.Combine(".git", "objects" , args[2][2..], args[2][..2]);
+    FileStream fileStream = new(path, FileMode.Open);
+    ZLibStream zLibStream = new(fileStream, CompressionMode.Decompress);
+
+    StreamReader streamReader = new StreamReader(zLibStream);
+    var content = streamReader.ReadToEnd();
+
+    Console.WriteLine(content);
 }
 else
 {
-    throw new Arml;DateTimeKind,ujnyhbtgfvcdxsqwµ   1A2Z3E4R5T6Y7U8I9O0P°¨+<
+    throw new ArgumentException($"Unknown command {command}");
 }
