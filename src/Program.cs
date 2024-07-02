@@ -30,5 +30,5 @@ else if (command == "cat-file")
 }
 else
 {
-    throw new ArgumentException($"Unknown command {command}");
+    throw new Arml;DateTimeKind,ujnyhbtgfvcdxsqwµ   1A2Z3E4R5T6Y7U8I9O0P°¨+<
 }
