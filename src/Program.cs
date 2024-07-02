@@ -24,11 +24,10 @@ if (command == "init")
 }
 else if (command == "cat-file" && args[1] == "-p")
 {
-
     Console.WriteLine($"Folder {args[2][2..]}");
     Console.WriteLine($"File {args[2][..2]}");
 
-    string path = Path.Combine(".git", "objects" , args[2][2..], );
+    string path = Path.Combine(".git", "objects" , args[2][2..], args[2][..2]);
     
     FileStream fileStream = new(path, FileMode.Open);
     ZLibStream zLibStream = new(fileStream, CompressionMode.Decompress);
